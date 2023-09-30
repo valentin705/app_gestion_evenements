@@ -24,7 +24,7 @@ class Event
     private ?\DateTimeInterface $startDateTime = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $enDateTime = null;
+    private ?\DateTimeInterface $endDateTime = null;
 
     #[ORM\ManyToOne(inversedBy: 'events')]
     #[ORM\JoinColumn(nullable: false)]
@@ -71,14 +71,14 @@ class Event
         return $this;
     }
 
-    public function getEnDateTime(): ?\DateTimeInterface
+    public function getEndDateTime(): ?\DateTimeInterface
     {
-        return $this->enDateTime;
+        return $this->endDateTime;
     }
 
-    public function setEnDateTime(\DateTimeInterface $enDateTime): static
+    public function setEndDateTime(\DateTimeInterface $endDateTime): static
     {
-        $this->enDateTime = $enDateTime;
+        $this->endDateTime = $endDateTime;
 
         return $this;
     }
