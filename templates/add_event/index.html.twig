@@ -1,0 +1,18 @@
+{# templates/add_event/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un événement{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un événement</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.title, {'label': 'Titre'}) }}
+        {{ form_row(form.description, {'label': 'Description'}) }}
+        {{ form_row(form.startDateTime, {'label': 'Date et heure de début'}) }}
+        {{ form_row(form.endDateTime, {'label': 'Date et heure de fin'}) }}
+        {# Le champ utilisateur est automatiquement défini dans le contrôleur, donc nous n'avons pas besoin de l'afficher ici #}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+{% endblock %}
