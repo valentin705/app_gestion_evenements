@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de {{ user.username }}{% endblock %}
+
+{% block body %}
+<h1>Profil de {{ user.username }}</h1>
+
+<h2>Mes événements</h2>
+<ul>
+    {% for event in events %}
+    <li>
+        {{ event.title }} - {{ event.startDateTime|date('d/m/Y H:i') }}
+        <a href="{{ path('app_update_event', {'id': event.id}) }}" title="Modifier l'événement">
+            <i class="fas fa-edit"></i>
+        </a>
+        <a href="{{ path('app_delete_event', {'id': event.id}) }}" title="Supprimer l'événement" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">
+            <i class="fas fa-trash-alt"></i>
+        </a>
+    </li>
+    {% else %}
+    <li>Vous n'avez pas encore créé d'événements.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

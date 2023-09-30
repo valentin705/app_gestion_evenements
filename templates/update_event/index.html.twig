@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mise à jour de l'événement{% endblock %}
+
+{% block body %}
+<h1>Mise à jour de l'événement</h1>
+
+{{ form_start(eventForm) }}
+    {{ form_widget(eventForm) }}
+    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    <a href="{{ path('app_delete_event', {'id': event.id}) }}" title="Supprimer l'événement" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">
+        <i class="fas fa-trash-alt"></i>
+    </a>
+{{ form_end(eventForm) }}
+
+{% endblock %}

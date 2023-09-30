@@ -13,11 +13,17 @@
         </div>
         <div class="card-body">
             <p class="card-text">{{ event.description }}</p>
-            <p class="card-text"><small class="text-muted">Début : {{ event.startDateTime|date('d/m/Y H:i') }}</small></p>
+            <p class="card-text"><small class="text-muted">Début : {{ event.startDateTime|date('d/m/Y H:i') }}</small>
+            </p>
             <p class="card-text"><small class="text-muted">Fin : {{ event.endDateTime|date('d/m/Y H:i') }}</small></p>
         </div>
         <div class="card-footer">
             <small class="text-muted">Organisé par : {{ event.user.username }}</small>
+            {% if app.user and app.user.id == event.user.id %}
+            <a href="{{ path('app_update_event', {'id': event.id}) }}" title="Modifier l'événement">
+                <i class="fas fa-pencil-alt"></i>
+            </a>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
