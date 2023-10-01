@@ -16,19 +16,6 @@ class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
 
-    // public function showListEvents(
-    //     EventRepository $eventRepository
-    // ): Response {
-
-    //     $user = $this->getUser();
-    //     $events = $eventRepository->findAll();
-    //     return $this->render('home/index.html.twig', [
-    //         'events' => $events,
-    //         'user' => $user,
-    //     ]);
-
-    // }
-
     public function showListEvents(Request $request, EventFilterService $eventFilterService, 
     EventRepository $eventRepository): Response
 {
