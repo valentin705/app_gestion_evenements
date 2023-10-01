@@ -35,10 +35,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $username = null;
 
+    #[ORM\ManyToMany(targetEntity: Event::class, mappedBy: 'registeredUsers')]
+    private Collection $registeredEvents;
+
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->roles[] = 'ROLE_USER';
+        $this->registeredEvents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -156,5 +160,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->username;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getRegisteredEvents(): Collection
+    {
+        return $this->registeredEvents;
+    }
+
+    public function addRegisteredEvent(Event $registeredEvent): static
+    {
+        if (!$this->registeredEvents->contains($registeredEvent)) {
+            $this->registeredEvents->add($registeredEvent);
+            $registeredEvent->addRegisteredUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRegisteredEvent(Event $registeredEvent): static
+    {
+        if ($this->registeredEvents->removeElement($registeredEvent)) {
+            $registeredEvent->removeRegisteredUser($this);
+        }
+
+        return $this;
     }
 }

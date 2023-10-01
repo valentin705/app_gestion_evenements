@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\EventFilterType;
 use App\Repository\EventRepository;
 use App\Service\EventFilterService;
+use Doctrine\ORM\EntityManagerInterface;
 
 class HomeController extends AbstractController
 {
@@ -48,6 +49,29 @@ class HomeController extends AbstractController
         'user' => $user,
         'form' => $form->createView(),
     ]);
+}
+
+#[Route('/event/{id}/register', name: 'event_register')]
+public function register(Event $event, EntityManagerInterface $entityManager): Response
+{
+    $user = $this->getUser();
+    $user->addRegisteredEvent($event);
+    $entityManager->persist($user);
+    $entityManager->flush();
+
+    return $this->redirectToRoute('app_home');
+}
+
+#[Route('/event/{id}/unregister', name: 'event_unregister')]
+public function unregister(Event $event, EntityManagerInterface $entityManager): Response
+{
+    $user = $this->getUser();
+    $user->removeRegisteredEvent($event);
+    $entityManager->persist($user);
+    $entityManager->flush();
+
+    return $this->redirectToRoute('app_home');
+
 }
 
 }

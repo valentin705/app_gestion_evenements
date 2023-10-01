@@ -31,6 +31,16 @@
             </a>
             {% endif %}
         </div>
+        <div class="card-footer">
+            <small class="text-muted">Organisé par : {{ event.user.username }}</small>
+            {% if app.user and app.user.id != event.user.id %}
+                {% if app.user.registeredEvents.contains(event) %}
+                    <a href="{{ path('event_unregister', {'id': event.id}) }}" class="btn btn-danger">Se désinscrire</a>
+                {% else %}
+                    <a href="{{ path('event_register', {'id': event.id}) }}" class="btn btn-success">S'inscrire</a>
+                {% endif %}
+            {% endif %}
+        </div>
     </div>
     {% endfor %}
 </div>

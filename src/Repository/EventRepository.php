@@ -30,8 +30,7 @@ class EventRepository extends ServiceEntityRepository
             ->setParameter('end', $end)
             ->orderBy('e.startDateTime', 'ASC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 
     // Flexible query to fetch events based on a start date, 
