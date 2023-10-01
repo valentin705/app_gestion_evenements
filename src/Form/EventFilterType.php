@@ -17,24 +17,12 @@ class EventFilterType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Date de début',
                 'attr' => ['class' => 'form-control'],
-                // 'required' => false,
-                // 'empty_data' => null,
-                // 'format' => 'yyyy-MM-dd',
             ])
             ->add('endDate', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Date de fin',
                 'attr' => ['class' => 'form-control'],
-                // 'required' => false,
-                // 'empty_data' => null,
-                // 'format' => 'yyyy-MM-dd',
             ]);
-        // ->add('filter', SubmitType::class, ['label' => 'Filtrer'])
-        // ->add('reset', ButtonType::class, [
-        //     'label' => 'Réinitialiser',
-        //     'attr' => [
-        //         'onclick' => 'window.location.href=\'/home\'; return false;',
-        //     ]
-        // ]);
+
     }
 }

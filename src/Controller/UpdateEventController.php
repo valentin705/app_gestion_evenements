@@ -37,7 +37,7 @@ class UpdateEventController extends AbstractController
         $entityManager->remove($event);
         $entityManager->flush();
         $this->addFlash('success', 'Événement supprimé avec succès!');
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_user_profil');
 
     }
 

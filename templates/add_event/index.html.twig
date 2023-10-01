@@ -1,5 +1,3 @@
-{# templates/add_event/index.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Ajouter un événement{% endblock %}
@@ -15,4 +13,5 @@
         {# Le champ utilisateur est automatiquement défini dans le contrôleur, donc nous n'avons pas besoin de l'afficher ici #}
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     {{ form_end(form) }}
+    
 {% endblock %}
