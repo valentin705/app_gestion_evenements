@@ -21,28 +21,62 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
-//    /**
-//     * @return Event[] Returns an array of Event objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    // Query to fetch all events between two specific dates
+    public function findByDateRange(\DateTime $start, \DateTime $end): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.startDateTime BETWEEN :start AND :end')
+            ->setParameter('start', $start)
+            ->setParameter('end', $end)
+            ->orderBy('e.startDateTime', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
-//    public function findOneBySomeField($value): ?Event
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    // Flexible query to fetch events based on a start date, 
+    // an end date, both, or even without either
+    // public function findByDateRange(?\DateTime $start = null, ?\DateTime $end = null): array
+    // {
+    //     $qb = $this->createQueryBuilder('e');
+
+    //     if ($start) {
+    //         $qb->andWhere('e.startDateTime >= :start')
+    //             ->setParameter('start', $start);
+    //     }
+
+    //     if ($end) {
+    //         $qb->andWhere('e.startDateTime <= :end')
+    //             ->setParameter('end', $end);
+    //     }
+
+    //     return $qb->orderBy('e.startDateTime', 'ASC')
+    //         ->getQuery()
+    //         ->getResult();
+    // }
+
+    //    /**
+    //     * @return Event[] Returns an array of Event objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('e')
+    //            ->andWhere('e.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('e.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Event
+    //    {
+    //        return $this->createQueryBuilder('e')
+    //            ->andWhere('e.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

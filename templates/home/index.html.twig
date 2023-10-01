@@ -5,6 +5,12 @@
 {% block body %}
 <h1>Liste des événements</h1>
 
+<div>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+</div>
+
 <div class="card-deck">
     {% for event in events %}
     <div class="card mb-4">
