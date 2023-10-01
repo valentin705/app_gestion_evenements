@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\User;
 
 /**
  * @extends ServiceEntityRepository<Event>
@@ -29,6 +30,16 @@ class EventRepository extends ServiceEntityRepository
             ->setParameter('start', $start)
             ->setParameter('end', $end)
             ->orderBy('e.startDateTime', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findEventsByParticipant(User $user): array
+    {
+        return $this->createQueryBuilder('e')
+            ->innerJoin('e.registeredUsers', 'u')
+            ->where('u.id = :userId')
+            ->setParameter('userId', $user->getId())
             ->getQuery()
             ->getResult();
     }

@@ -21,4 +21,17 @@
     <li>Vous n'avez pas encore créé d'événements.</li>
     {% endfor %}
 </ul>
+
+<h2>Événements auxquels je participe</h2>
+<ul>
+    {% for event in participatingEvents %}
+    <li>
+        {{ event.title }} - {{ event.startDateTime|date('d/m/Y H:i') }}
+        {# Vous pouvez ajouter des actions supplémentaires ici, comme se désinscrire de l'événement #}
+    </li>
+    {% else %}
+    <li>Vous ne participez à aucun événement pour le moment.</li>
+    {% endfor %}
+</ul>
+
 {% endblock %}

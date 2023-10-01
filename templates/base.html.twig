@@ -28,9 +28,14 @@
         {% if app.user %}
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a href="{{ path('app_user_profil') }}" class="nav-item nav-link">Mes événements</a>
+                <a href="{{ path('app_user_profil') }}" class="nav-item nav-link">Mes événements créer</a>
             </div>
         </div>
+        {# <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a href="{{ path('app_user_participating_events') }}" class="nav-item nav-link">Mes événements auxquels je participe</a>
+            </div>
+        </div> #}
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a href="{{ path('app_add_event') }}" class="nav-item nav-link">Ajouter un événement</a>
@@ -38,6 +43,11 @@
         </div>
         <div class="navbar-nav ml-auto">
             <a href="{{ path('app_logout') }}" class="nav-item nav-link">Déconnexion</a>
+        </div>
+        {% else %}
+        <div class="navbar-nav ml-auto">
+            <a href="{{ path('app_login') }}" class="nav-item nav-link">Connexion</a>
+            <a href="{{ path('app_register') }}" class="nav-item nav-link">Inscription</a>
         </div>
         {% endif %}
     </nav>

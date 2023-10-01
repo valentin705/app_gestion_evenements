@@ -20,10 +20,24 @@ class UserProfilController extends AbstractController
         }
 
         $events = $eventRepository->findBy(['user' => $user]);
+        $participatingEvents = $eventRepository->findEventsByParticipant($user);
+
 
         return $this->render('user_profil/index.html.twig', [
             'user' => $user,
             'events' => $events,
+            'participatingEvents' => $participatingEvents,
         ]);
     }
+
+    // #[Route('/user/participating-events', name: 'app_user_participating_events')]
+    // public function showParticipatingEvents(EventRepository $eventRepository): Response
+    // {
+    //     $user = $this->getUser();
+    //     $events = $eventRepository->findEventsByParticipant($user);
+
+    //     return $this->render('user/participating_events.html.twig', [
+    //         'events' => $events,
+    //     ]);
+    // }
 }
