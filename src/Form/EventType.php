@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+// use Symfony\Component\Validator\Constraints\GreaterThan;
+// use Symfony\Component\Validator\Constraints as Assert;
 
 class EventType extends AbstractType
 {
@@ -30,6 +32,12 @@ class EventType extends AbstractType
             'widget' => 'single_text',
             'label' => 'Date de fin',
             'attr' => ['class' => 'form-control'],
+            // 'constraints' => [
+            //     new Assert\GreaterThan([
+            //         'propertyPath' => 'parent["startDateTime"]',
+            //         'message' => 'La date de fin doit être postérieure à la date de début.'
+            //     ]),
+            // ],
         ])
         ->add('location', null, [
             'label' => 'Lieu',
