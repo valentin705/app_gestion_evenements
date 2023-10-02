@@ -11,6 +11,7 @@ use App\Form\EventFilterType;
 use App\Repository\EventRepository;
 use App\Service\EventFilterService;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Service\EventService;
 
 class HomeController extends AbstractController
 {
@@ -38,27 +39,41 @@ class HomeController extends AbstractController
     ]);
 }
 
-#[Route('/event/{id}/register', name: 'event_register')]
-public function register(Event $event, EntityManagerInterface $entityManager): Response
-{
-    $user = $this->getUser();
-    $user->addRegisteredEvent($event);
-    $entityManager->persist($user);
-    $entityManager->flush();
+// #[Route('/event/{id}/register', name: 'event_register')]
+// public function register(Event $event, EntityManagerInterface $entityManager): Response
+// {
+//     $user = $this->getUser();
+//     $user->addRegisteredEvent($event);
+//     $entityManager->persist($user);
+//     $entityManager->flush();
 
+//     return $this->redirectToRoute('app_home');
+// }
+
+// #[Route('/event/{id}/unregister', name: 'event_unregister')]
+// public function unregister(Event $event, EntityManagerInterface $entityManager): Response
+// {
+//     $user = $this->getUser();
+//     $user->removeRegisteredEvent($event);
+//     $entityManager->persist($user);
+//     $entityManager->flush();
+
+//     return $this->redirectToRoute('app_home');
+
+// }
+
+#[Route('/event/{id}/register', name: 'event_register')]
+public function register(Event $event, EventService $eventService): Response {
+    $user = $this->getUser();
+    $eventService->registerUserToEvent($user, $event);
     return $this->redirectToRoute('app_home');
 }
 
 #[Route('/event/{id}/unregister', name: 'event_unregister')]
-public function unregister(Event $event, EntityManagerInterface $entityManager): Response
-{
+public function unregister(Event $event, EventService $eventService): Response {
     $user = $this->getUser();
-    $user->removeRegisteredEvent($event);
-    $entityManager->persist($user);
-    $entityManager->flush();
-
+    $eventService->unregisterUserFromEvent($user, $event);
     return $this->redirectToRoute('app_home');
-
 }
 
 }

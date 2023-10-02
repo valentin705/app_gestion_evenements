@@ -9,25 +9,22 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Event;
 use App\Form\EventType;
+use App\Service\EventService;
 
 class AddEventController extends AbstractController
 {
     #[Route('/add/event', name: 'app_add_event')]
-    public function addEvent(
-        Request $request,
-        EntityManagerInterface $entityManagerInterface,
-        Event $event = null
-    ) {
+    public function addEvent(Request $request, EventService $eventService, Event $event = null): Response {
         if (!$event) {
             $event = new Event();
         }
+        
         $user = $this->getUser();
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            $event->setUser($user);
-            $entityManagerInterface->persist($event);
-            $entityManagerInterface->flush();
+            $eventService->createEvent($event, $user);
             return $this->redirectToRoute('app_home');
         }
 

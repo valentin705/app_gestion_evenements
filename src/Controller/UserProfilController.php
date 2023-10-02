@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Event;
+use App\Service\EventService;
 
 class UserProfilController extends AbstractController
 {
@@ -17,7 +18,6 @@ class UserProfilController extends AbstractController
         $user = $this->getUser();
 
         if (!$user) {
-            // Redirigez vers la page de connexion ou une autre page si l'utilisateur n'est pas connecté
             return $this->redirectToRoute('app_login');
         }
 
@@ -32,18 +32,23 @@ class UserProfilController extends AbstractController
         ]);
     }
 
+    //     #[Route('/user/profil/{id}/unregister_event', name: 'event_user_unregister')]
+    //     public function unregister(Event $event, EntityManagerInterface $entityManager): Response
+    // {
+    //     $user = $this->getUser();
+    //     $user->removeRegisteredEvent($event);
+    //     $entityManager->persist($user);
+    //     $entityManager->flush();
+
+    //     return $this->redirectToRoute('app_user_profil');
+
+    // }
+
     #[Route('/user/profil/{id}/unregister_event', name: 'event_user_unregister')]
-    public function unregister(Event $event, EntityManagerInterface $entityManager): Response
-{
-    $user = $this->getUser();
-    $user->removeRegisteredEvent($event);
-    $entityManager->persist($user);
-    $entityManager->flush();
-
-    return $this->redirectToRoute('app_user_profil');
-
-}
-
-
-
+    public function unregister(Event $event, EventService $eventService): Response
+    {
+        $user = $this->getUser();
+        $eventService->unregisterUserFromEvent($user, $event);
+        return $this->redirectToRoute('app_user_profil');
+    }
 }
