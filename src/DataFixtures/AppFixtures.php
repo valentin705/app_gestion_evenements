@@ -41,6 +41,7 @@ class AppFixtures extends Fixture
                 $event = new Event();
                 $startDate = $faker->dateTimeBetween('-1 years', 'now');
                 $endDate = $faker->dateTimeBetween($startDate, '+2 years');
+                $location = $faker->city;
     
                 // Random selection of a title and its corresponding description
                 $randomEventDetail = $faker->randomElement(array_keys($eventDetails));
@@ -51,7 +52,8 @@ class AppFixtures extends Fixture
                       ->setDescription($eventDescription)
                       ->setStartDateTime($startDate)
                       ->setEndDateTime($endDate)
-                      ->setUser($user);
+                      ->setUser($user)
+                      ->setLocation($location);
     
                 $manager->persist($event);
             }

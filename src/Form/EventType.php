@@ -30,6 +30,10 @@ class EventType extends AbstractType
             'widget' => 'single_text',
             'label' => 'Date de fin',
             'attr' => ['class' => 'form-control'],
+        ])
+        ->add('location', null, [
+            'label' => 'Lieu',
+            'attr' => ['class' => 'form-control'],
         ]);
 }
 

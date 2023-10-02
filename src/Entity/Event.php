@@ -35,6 +35,9 @@ class Event
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'registeredEvents')]
     private Collection $registeredUsers;
 
+    #[ORM\Column(length: 255)]
+    private ?string $location = null;
+
     public function __construct()
     {
         $this->registeredUsers = new ArrayCollection();
@@ -125,6 +128,18 @@ class Event
     public function removeRegisteredUser(User $registeredUser): static
     {
         $this->registeredUsers->removeElement($registeredUser);
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(string $location): static
+    {
+        $this->location = $location;
 
         return $this;
     }

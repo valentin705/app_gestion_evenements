@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\EventRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Event;
 
 class UserProfilController extends AbstractController
 {
@@ -29,5 +31,19 @@ class UserProfilController extends AbstractController
             'participatingEvents' => $participatingEvents,
         ]);
     }
+
+    #[Route('/user/profil/{id}/unregister_event', name: 'event_user_unregister')]
+    public function unregister(Event $event, EntityManagerInterface $entityManager): Response
+{
+    $user = $this->getUser();
+    $user->removeRegisteredEvent($event);
+    $entityManager->persist($user);
+    $entityManager->flush();
+
+    return $this->redirectToRoute('app_user_profil');
+
+}
+
+
 
 }
