@@ -8,18 +8,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Event;
 use App\Form\EventType;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\EventService;
 
 class UpdateEventController extends AbstractController
 {
     #[Route('/update/event/{id}', name: 'app_update_event')]
-    public function updateEvent(Request $request, EntityManagerInterface $entityManager, Event $event): Response
+    public function updateEvent(Request $request, EventService $eventService, Event $event): Response
     {
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $eventService->updateEvent($event);
             $this->addFlash('success', 'Événement mis à jour avec succès!');
             return $this->redirectToRoute('app_home');
         }
@@ -30,15 +30,12 @@ class UpdateEventController extends AbstractController
         ]);
     }
 
-    // #[Route('/update/event/{id}/delete_event/{event}', name: 'app_delete_event')]
     #[Route('/update/event/{id}/delete_event', name: 'app_delete_event')]
-    public function deleteEvent(Event $event, EntityManagerInterface $entityManager): Response
+    public function deleteEvent(EventService $eventService, Event $event): Response
     {
-        $entityManager->remove($event);
-        $entityManager->flush();
+        $eventService->deleteEvent($event);
         $this->addFlash('success', 'Événement supprimé avec succès!');
         return $this->redirectToRoute('app_user_profil');
-
     }
 
 }

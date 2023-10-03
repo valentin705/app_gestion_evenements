@@ -59,7 +59,8 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Mot de passe',
                 'attr' => [
                     'autocomplete' => 'new-password',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => 'Entrez votre mot de passe'
                 ],
                 'constraints' => [
                     new NotBlank([

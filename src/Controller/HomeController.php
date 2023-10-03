@@ -39,29 +39,6 @@ class HomeController extends AbstractController
     ]);
 }
 
-// #[Route('/event/{id}/register', name: 'event_register')]
-// public function register(Event $event, EntityManagerInterface $entityManager): Response
-// {
-//     $user = $this->getUser();
-//     $user->addRegisteredEvent($event);
-//     $entityManager->persist($user);
-//     $entityManager->flush();
-
-//     return $this->redirectToRoute('app_home');
-// }
-
-// #[Route('/event/{id}/unregister', name: 'event_unregister')]
-// public function unregister(Event $event, EntityManagerInterface $entityManager): Response
-// {
-//     $user = $this->getUser();
-//     $user->removeRegisteredEvent($event);
-//     $entityManager->persist($user);
-//     $entityManager->flush();
-
-//     return $this->redirectToRoute('app_home');
-
-// }
-
 #[Route('/event/{id}/register', name: 'event_register')]
 public function register(Event $event, EventService $eventService): Response {
     $user = $this->getUser();
