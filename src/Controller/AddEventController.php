@@ -13,7 +13,7 @@ use App\Service\EventService;
 
 class AddEventController extends AbstractController
 {
-    #[Route('/add/event', name: 'app_add_event')]
+    #[Route('/event/add', name: 'app_add_event')]
     public function addEvent(Request $request, EventService $eventService, Event $event = null): Response {
         if (!$event) {
             $event = new Event();
@@ -28,7 +28,7 @@ class AddEventController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('add_event/index.html.twig', [
+        return $this->render('event/add.html.twig', [
             'form' => $form->createView(),
         ]);
     }

@@ -136,7 +136,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeEvent(Event $event): static
     {
         if ($this->events->removeElement($event)) {
-            // set the owning side to null (unless already changed)
             if ($event->getUser() === $this) {
                 $event->setUser(null);
             }

@@ -10,21 +10,27 @@ use App\Form\EventType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\EventService;
 
-class UpdateEventController extends AbstractController
+class EditEventController extends AbstractController
 {
-    #[Route('/update/event/{id}', name: 'app_update_event')]
+    #[Route('/event/edit/{id}', name: 'app_update_event')]
     public function updateEvent(Request $request, EventService $eventService, Event $event): Response
     {
+
+        $user = $this->getUser();
+        if ($user != $event->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $eventService->updateEvent($event);
             $this->addFlash('success', 'Événement mis à jour avec succès!');
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_user_profil');
         }
 
-        return $this->render('update_event/index.html.twig', [
+        return $this->render('event/edit.html.twig', [
             'eventForm' => $form->createView(),
             'event' => $event,
         ]);

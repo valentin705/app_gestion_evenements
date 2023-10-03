@@ -15,7 +15,7 @@ use App\Service\EventService;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
+    #[Route('/homepage', name: 'app_home')]
 
     public function showListEvents(Request $request, EventFilterService $eventFilterService, 
     EventRepository $eventRepository): Response
@@ -32,7 +32,7 @@ class HomeController extends AbstractController
         $events = $eventRepository->findAll();
     }
 
-    return $this->render('home/index.html.twig', [
+    return $this->render('homepage.html.twig', [
         'events' => $events,
         'user' => $user,
         'form' => $form->createView(),

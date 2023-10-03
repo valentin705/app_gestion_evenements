@@ -23,7 +23,7 @@ class UserProfilController extends AbstractController
         $events = $eventRepository->findBy(['user' => $user]);
         $participatingEvents = $eventRepository->findEventsByParticipant($user);
 
-        return $this->render('user_profil/index.html.twig', [
+        return $this->render('user/profil.html.twig', [
             'user' => $user,
             'events' => $events,
             'participatingEvents' => $participatingEvents,
