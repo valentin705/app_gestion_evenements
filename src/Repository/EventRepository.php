@@ -22,6 +22,14 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
+    public function findAllOrderedByStartDate(): array
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.startDateTime', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // Query to fetch all events between two specific dates
     public function findByDateRange(\DateTime $start, \DateTime $end): array
     {

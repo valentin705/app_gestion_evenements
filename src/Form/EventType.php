@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 // use Symfony\Component\Validator\Constraints\GreaterThan;
 // use Symfony\Component\Validator\Constraints as Assert;
 
@@ -23,15 +24,17 @@ class EventType extends AbstractType
             'label' => 'Description',
             'attr' => ['class' => 'form-control'],
         ])
-        ->add('startDateTime', DateType::class, [
+        ->add('startDateTime', DateTimeType::class, [
             'widget' => 'single_text',
-            'label' => 'Date de début',
-            'attr' => ['class' => 'form-control'],
+            // 'html5' => false,
+            'label' => 'Date et heure de début',
+            'attr' => ['class' => 'form-control datetimeppicker'],
         ])
-        ->add('endDateTime', DateType::class, [
+        ->add('endDateTime', DateTimeType::class, [
             'widget' => 'single_text',
-            'label' => 'Date de fin',
-            'attr' => ['class' => 'form-control'],
+            // 'html5' => false,
+            'label' => 'Date et heure de fin',
+            'attr' => ['class' => 'form-control datetimeppicker'],
             // 'constraints' => [
             //     new Assert\GreaterThan([
             //         'propertyPath' => 'parent["startDateTime"]',
