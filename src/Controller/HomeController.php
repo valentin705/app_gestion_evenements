@@ -29,7 +29,7 @@ class HomeController extends AbstractController
         $data = $form->getData();
         $events = $eventFilterService->filterByDateRange($data['startDate'], $data['endDate']);
     } else {
-        $events = $eventRepository->findAllOrderedByStartDate();
+        $events = $eventRepository->findAllUpcomingEventsOrderedByStartDate();
     }
 
     return $this->render('homepage.html.twig', [
