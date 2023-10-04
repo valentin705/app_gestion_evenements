@@ -9,6 +9,7 @@
     {% block stylesheets %}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     {% endblock %}
 
     {% block javascripts %}
@@ -19,37 +20,29 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ path('app_home') }}">Symfony Events</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{{ path('app_home') }}">
+            <img class="navbar_logo-img" src="{{ asset('images/logoSE.png')}}" alt="logo application">
+            <span class="navbar_logo-text">Symfony Events</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        {% if app.user %}
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a href="{{ path('app_user_profil') }}" class="nav-item nav-link">Mes événements créer</a>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav ml-auto flex-row justify-content-around">
+                {% if app.user %}
+                    <a href="{{ path('app_user_profil') }}" class="lien mr-3">Mes événements</a>
+                    <a href="{{ path('app_add_event') }}" class="lien-btn mr-3">Ajouter un événement</a>
+                    <a href="{{ path('app_logout') }}" class="lien">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="lien mr-3">Connexion</a>
+                    <a href="{{ path('app_register') }}" class="lien">Inscription</a>
+                {% endif %}
             </div>
         </div>
-        {# <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a href="{{ path('app_user_participating_events') }}" class="nav-item nav-link">Mes événements auxquels je participe</a>
-            </div>
-        </div> #}
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a href="{{ path('app_add_event') }}" class="nav-item nav-link">Ajouter un événement</a>
-            </div>
-        </div>
-        <div class="navbar-nav ml-auto">
-            <a href="{{ path('app_logout') }}" class="nav-item nav-link">Déconnexion</a>
-        </div>
-        {% else %}
-        <div class="navbar-nav ml-auto">
-            <a href="{{ path('app_login') }}" class="nav-item nav-link">Connexion</a>
-            <a href="{{ path('app_register') }}" class="nav-item nav-link">Inscription</a>
-        </div>
-        {% endif %}
     </nav>
         {% block body %}
         {% endblock %}

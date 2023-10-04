@@ -26,21 +26,13 @@ class EventType extends AbstractType
         ])
         ->add('startDateTime', DateTimeType::class, [
             'widget' => 'single_text',
-            // 'html5' => false,
             'label' => 'Date et heure de début',
             'attr' => ['class' => 'form-control datetimeppicker'],
         ])
         ->add('endDateTime', DateTimeType::class, [
             'widget' => 'single_text',
-            // 'html5' => false,
             'label' => 'Date et heure de fin',
             'attr' => ['class' => 'form-control datetimeppicker'],
-            // 'constraints' => [
-            //     new Assert\GreaterThan([
-            //         'propertyPath' => 'parent["startDateTime"]',
-            //         'message' => 'La date de fin doit être postérieure à la date de début.'
-            //     ]),
-            // ],
         ])
         ->add('location', null, [
             'label' => 'Lieu',

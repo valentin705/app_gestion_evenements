@@ -3,10 +3,10 @@
 {% block title %}Profil de {{ user.username }}{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-    <h1 class="text-center">Profil de {{ user.username }}</h1>
+<main class="profil container">
+    <h1 class="text-center profil-title">Profil de {{ user.username }}</h1>
 
-    <h2 class="mt-4">Mes événements</h2>
+    <h2 class="section-title">Mes événements</h2>
     <ul class="list-group">
         {% for event in events %}
         <li class="list-group-item">
@@ -29,7 +29,7 @@
         {% endfor %}
     </ul>
 
-    <h2 class="mt-4">Événements auxquels je participe</h2>
+    <h2 class="section-title">Événements auxquels je participe</h2>
     <ul class="list-group">
         {% for event in participatingEvents %}
         <li class="list-group-item">
@@ -52,5 +52,5 @@
     <div class="text-center mt-4">
         <a href="{{ path('app_home') }}" class="btn btn-secondary">Retour à l'accueil</a>
     </div>
-</div>
+</main>
 {% endblock %}

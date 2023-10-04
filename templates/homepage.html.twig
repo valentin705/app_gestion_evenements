@@ -5,36 +5,49 @@
 
 
 {% block body %}
-<div class="container mt-5">
-    <!-- Section de présentation -->
-    <section class="presentation mb-5">
-        <h1 class="text-center">Bienvenue sur Symfony Événements</h1>
-        <p class="lead text-center">
-            Votre plateforme de choix pour créer, gérer et rejoindre les événements les plus passionnants de la région.
-            Découvrez ce qui se passe autour de vous ou organisez votre propre événement en quelques clics.
-        </p>
-    </section>
-    <h1 class="text-center mb-4">Liste des événements</h1>
+<!-- Header de présentation -->
+<header class="presentation bg-black">
+    <h1 class="text-center">Bienvenue sur Symfony Events</h1>
+    <p class="lead text-center">
+        Votre plateforme de choix pour créer, gérer et rejoindre les événements les plus passionnants de la région.
+        Découvrez ce qui se passe autour de vous ou organisez votre propre événement en quelques clics.
+    </p>
+    <div class="text-center mt-5">
+        {% if app.user %}
+        <div class="row justify-content-center">
+            <a href="{{ path('app_add_event') }}" class="lien-btn mr-3">Ajouter un événement</a>
+            <a href="{{ path('app_user_profil') }}" class="lien">Mes événements</a>
+        </div>
+        {% else %}
+        <a href="{{ path('app_login') }}" class="lien-btn mr-3">Connexion</a>
+        <a href="{{ path('app_register') }}" class="lien-btn">Inscription</a>
+        {% endif %}
+    </div>
+</header>
 
-    <div class="container">
+<main class="container">
+
+    <h1 class="title text-center">Liste des événements</h1>
+
+    <section class="container filter-container">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <div class="text-center">
+                <div class="filter text-center">
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
                     <div class="mt-3">
-                        <button type="submit" class="btn btn-primary">Filtrer</button>
+                        <button type="submit" class="btn btn-dark">Filtrer</button>
                         <a href="{{ path('app_home') }}" class="btn btn-secondary ml-2">Réinitialiser</a>
                     </div>
                     {{ form_end(form) }}
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="row mt-4">
+    <section class="grid-card row mt-4">
         {% for event in events %}
-        <div class="col-md-4 mb-4">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">{{ event.title }}</h5>
@@ -67,6 +80,6 @@
             </div>
         </div>
         {% endfor %}
-    </div>
-</div>
+    </section>
+</main>
 {% endblock %}
