@@ -10,19 +10,21 @@
     <ul class="list-group">
         {% for event in events %}
         <li class="list-group-item">
-            <div class="d-flex justify-content-between align-items-center">
-                <span>{{ event.title }}</span>
-                <span>{{ event.startDateTime|date('d/m/Y H:i') }}</span>
+            <div class="d-flex justify-content-between align-items-start"> 
+                <h5>{{ event.title }}</h5>
+                <div> 
+                    <span><small class="text-muted">Début : {{ event.startDateTime|date('d/m/Y H:i') }}</small></span><br>
+                    <span><small class="text-muted">Fin : {{ event.endDateTime|date('d/m/Y H:i') }}</small></span>
+                </div>
             </div>
-            <div class="mt-2">
-                <p>{{ event.description }}</p>
-                <p>{{ event.registeredUsers.count }} personne(s) inscrite(s)</p>
-                <a href="{{ path('app_update_event', {'id': event.id}) }}" class="btn btn-primary btn-sm"
-                    title="Modifier l'événement">Modifier</a>
-                <a href="{{ path('app_delete_event', {'id': event.id}) }}" class="btn btn-danger btn-sm"
-                    title="Supprimer l'événement"
-                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">Supprimer</a>
-            </div>
+            <p>{{ event.description }}</p>
+            <p class="card-text">Lieu : {{ event.location }}</p>
+            <p>{{ event.registeredUsers.count }} personne(s) inscrite(s)</p>
+            <a href="{{ path('app_update_event', {'id': event.id}) }}" class="btn btn-primary btn-sm"
+                title="Modifier l'événement">Modifier</a>
+            <a href="{{ path('app_delete_event', {'id': event.id}) }}" class="btn btn-danger btn-sm"
+                title="Supprimer l'événement"
+                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">Supprimer</a>
         </li>
         {% else %}
         <li class="list-group-item">Vous n'avez pas encore créé d'événements.</li>
@@ -33,16 +35,18 @@
     <ul class="list-group">
         {% for event in participatingEvents %}
         <li class="list-group-item">
-            <div class="d-flex justify-content-between align-items-center">
-                <span>{{ event.title }}</span>
-                <span>{{ event.startDateTime|date('d/m/Y H:i') }}</span>
+            <div class="d-flex justify-content-between align-items-start"> 
+                <h5>{{ event.title }}</h5>
+                <div> 
+                    <span><small class="text-muted">Début : {{ event.startDateTime|date('d/m/Y H:i') }}</small></span><br>
+                    <span><small class="text-muted">Fin : {{ event.endDateTime|date('d/m/Y H:i') }}</small></span>
+                </div>
             </div>
-            <div class="mt-2">
-                <p>{{ event.description }}</p>
-                <p>{{ event.registeredUsers.count }} personne(s) inscrite(s)</p>
-                <a href="{{ path('event_user_unregister', {'id': event.id}) }}" class="btn btn-danger btn-sm"
-                    title="Se désinscrire">Annuler</a>
-            </div>
+            <p>{{ event.description }}</p>
+            <p class="card-text">Lieu : {{ event.location }}</p>
+            <p>{{ event.registeredUsers.count }} personne(s) inscrite(s)</p>
+            <a href="{{ path('event_user_unregister', {'id': event.id}) }}" class="btn btn-danger btn-sm"
+                title="Se désinscrire">Annuler</a>
         </li>
         {% else %}
         <li class="list-group-item">Vous ne participez à aucun événement pour le moment.</li>

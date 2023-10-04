@@ -243,12 +243,12 @@ z-index: 100;
     color: #3d3d3d;
 }
 
-.btn-update, .btn-add, .btn-register, .btn-login {
+.btn-edit, .btn-add, .btn-register, .btn-login {
     background-color: #2b2b2b;
     color: #EFC75E;
 }
 
-.btn-update:hover, .btn-add:hover, .btn-register:hover, .btn-login:hover {
+.btn-edit:hover, .btn-add:hover, .btn-register:hover, .btn-login:hover {
     background-color: #3d3d3d;
 }
 

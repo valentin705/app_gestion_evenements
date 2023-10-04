@@ -18,11 +18,11 @@ class EventType extends AbstractType
         $builder
         ->add('title', null, [
             'label' => 'Titre',
-            'attr' => ['class' => 'form-control'],
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez le titre de l\'événement'],
         ])
         ->add('description', null, [
             'label' => 'Description',
-            'attr' => ['class' => 'form-control'],
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez la description de l\'événement'],
         ])
         ->add('startDateTime', DateTimeType::class, [
             'widget' => 'single_text',
@@ -36,7 +36,7 @@ class EventType extends AbstractType
         ])
         ->add('location', null, [
             'label' => 'Lieu',
-            'attr' => ['class' => 'form-control'],
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez le lieu de l\'événement'],
         ]);
 }
 
