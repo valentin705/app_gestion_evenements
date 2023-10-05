@@ -8,7 +8,8 @@
     
     <div class="form-container">
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger"> Vos identifiants sont incorrects.
+            </div>
         {% endif %}
 
         {% if app.user %}
@@ -16,6 +17,11 @@
                 Vous êtes connecté(e) en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
             </div>
         {% endif %}
+        {% for message in app.flashes('successAccount') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% endfor %}
 
         <form method="post">
             <div class="form-group">
