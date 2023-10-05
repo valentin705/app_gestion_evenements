@@ -2,6 +2,22 @@
 
 Cette application a été développée dans le but de gérer des événements pour une organisation régionale. Les utilisateurs peuvent créer, modifier, et supprimer des événements. De plus, ils peuvent s'inscrire à des événements.
 
+## Technologies
+
+Framework: Symfony (dernière version)
+Base de données: MySQL/PostgreSQL (à configurer selon vos préférences)
+Front-end: Bootstrap 
+Authentification: Composant Security de Symfony
+Fixtures: Librairie Faker
+
+## Fonctionnalités
+
+Authentification : Gestion complète des utilisateurs (inscription, connexion, déconnexion).
+Gestion des événements : Les utilisateurs peuvent créer, modifier, et supprimer des événements.
+Inscription aux événements : Les utilisateurs peuvent s'inscrire à des événements.
+Vue "Mes événements" : Pour voir uniquement les événements auxquels un utilisateur est inscrit.
+Affichage et filtres : Les événements sont affichés par ordre chronologique, avec une option de filtrage par date.
+
 ## Mise en route
 
 Voici les étapes pour mettre en place le projet sur votre machine :
@@ -17,6 +33,8 @@ composer install
 ```
 
 ### 3. Configuration de la base de données
+
+Installez et configurez votre serveur de base de données (par exemple, MySQL ou PostgreSQL). Assurez-vous qu'il est en cours d'exécution.
 
 Configurez les informations de votre base de données en créant un fichier .env.local en vous basant sur .env ou configurez directement dans .env.prod si nécessaire.
 
