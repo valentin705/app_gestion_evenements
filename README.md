@@ -4,7 +4,7 @@ Cette application a été développée dans le but de gérer des événements po
 
 ## Technologies
 
-Framework: Symfony (dernière version)
+Framework: Symfony 
 Base de données: MySQL/PostgreSQL (à configurer selon vos préférences)
 Front-end: Bootstrap 
 Authentification: Composant Security de Symfony
