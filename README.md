@@ -16,7 +16,7 @@ git clone https://github.com/valentin705/app_gestion_evenements.git
 composer install
 ```
 
-### 3. 3. Configuration de la base de données
+### 3. Configuration de la base de données
 
 Configurez les informations de votre base de données en créant un fichier .env.local en vous basant sur .env ou configurez directement dans .env.prod si nécessaire.
 
